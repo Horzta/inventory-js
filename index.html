@@ -1,0 +1,121 @@
+<html>
+    <header>
+        <title>Inventory JS</title>
+        <style>
+            body {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-size: 10px;
+            }
+
+            table {
+                margin: auto;
+                width: 100% ;
+                border: 2px solid #000;
+                font-size: 11px;
+                text-align: center;
+            }
+
+            thead {
+                font-weight: bold;
+            }
+
+            td {
+                padding: 5px;
+                border: 1px solid #000;
+            }
+
+            button {
+                padding: 5px;
+                border: 0px;
+                border-radius: 2px;
+                font-weight: bold;
+            }
+
+            .positive {
+                background-color: limegreen;
+                color: white;
+            }
+
+        </style>
+    </header>
+    <body>
+        <table>
+            <thead>
+                <td>ID</td>
+                <td>Code</td>
+                <td>Name</td>
+                <td>Quantity</td>
+                <td>Price</td>
+            </thead>
+            <tbody id="datatable-body">
+            </tbody>      
+        </table>
+        <form action="#">
+            <div class="form-control">
+                <span>ID</span>
+                <input id="inputId" type="text" disabled/>
+            </div>
+            <div class="form-control">
+                <span>CODE</span>
+                <input id="inputCode" type="text"/>
+            </div>
+            <div class="form-control">
+                <span>NAME</span>
+                <input id="inputName" type="text"/>
+            </div>
+            <div class="form-control">
+                <span>QUANTITY</span>
+                <input id="inputQuantity" type="number"/>
+            </div>
+            <div class="form-control">
+                <span>PRICE</span>
+                <input id="inputPrice" type="number"/>
+            </div>
+            <div class="form-control">
+                <button>Save</button>
+            </div>
+        </form>
+    </body>
+    <script>
+        var data = [
+                {'code':'IT-001', 'name':'Keyboard', 'quantity': 10.00, 'price': 200.00},
+                {'code':'IT-002', 'name':'Mouse', 'quantity': 10.00, 'price': 150.00},
+                {'code':'IT-003', 'name':'Monitor', 'quantity': 10.00, 'price': 800.00},
+            ];
+
+        data.forEach((item, index)=> {
+            var row = document.createElement("tr");
+
+            var id = document.createElement("td");
+            var code = document.createElement("td");
+            var name = document.createElement("td");
+            var quantity = document.createElement("td");
+            var price = document.createElement("td");
+
+            id.appendChild(document.createTextNode(index));
+            code.appendChild(document.createTextNode(item.code));
+            name.appendChild(document.createTextNode(item.name));
+            quantity.appendChild(document.createTextNode(item.quantity));
+            price.appendChild(document.createTextNode(item.price));
+
+            row.appendChild(id);
+            row.appendChild(code);
+            row.appendChild(name);
+            row.appendChild(quantity);
+            row.appendChild(price);
+
+            document.getElementById("datatable-body").appendChild(row);
+        });
+
+        var addRow = document.createElement("tr");
+        var addTD = document.createElement("td");
+        var addButton = document.createElement("button");
+
+        addTD.colSpan = "5";
+        addButton.innerText  = "Add new Item";
+        addButton.classList.add("positive");
+        addRow.appendChild(addTD);
+        addTD.appendChild(addButton);
+        document.getElementById("datatable-body").appendChild(addRow);
+    </script>
+</html>
